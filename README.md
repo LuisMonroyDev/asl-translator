@@ -153,6 +153,37 @@ git commit # template is set up for you to fill out no need for "-m"
 git push origin feature/luis-data-collection
 ```
 
+### Tagging a Version (Snapshots)
+
+Use Git tags to create named snapshots of your project at important milestones. This lets you bookmark a specific commit so you can always return to it later.
+
+```bash
+git tag -a v0.1-scaffold -m "Project scaffolding and initial setup"
+```
+
+| Flag | Purpose |
+|------|---------|
+| `-a` | Creates an **annotated tag**, which stores your name, the date, and a message alongside the tag |
+| `-m` | Attaches a **description message** to the tag (similar to a commit message) |
+
+**Useful tag commands:**
+
+```bash
+git tag                        # List all tags
+git show v0.1-scaffold         # View tag details and the commit it points to
+git checkout v0.1-scaffold     # Go back to that exact snapshot
+git push origin v0.1-scaffold  # Push a specific tag to remote (disregards branch protection)
+git push origin --tags         # Push all tags to remote (disregards branch protection)
+```
+
+**Deleting and re-creating a tag** (e.g., to move it to a newer commit):
+
+```bash
+git tag -d v0.1-scaffold                # Delete the tag locally
+git push origin --delete v0.1-scaffold  # Delete the tag from remote (if already pushed)
+git tag -a v0.1-scaffold -m "Updated message"  # Re-create it on the current commit
+```
+
 ### Pull Request
 
 1. Go to GitHub repository
