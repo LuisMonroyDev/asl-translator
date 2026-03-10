@@ -1,0 +1,251 @@
+/* === Reset & Base === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #f5f5f5;
+    color: #1a1a1a;
+    min-height: 100vh;
+    padding: 30px 40px;
+}
+
+/* === Screens === */
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* === Title === */
+h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+/* === Backend Status === */
+.backend-status {
+    font-size: 13px;
+    font-weight: 500;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.backend-status.connected {
+    color: #4caf50;
+}
+
+.backend-status.disconnected {
+    color: #f44336;
+}
+
+/* === Content Area (webcam + side panel) === */
+.content-area {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+/* === Webcam === */
+.webcam-container {
+    position: relative;
+    width: 640px;
+    height: 480px;
+    background-color: #ffffff;
+    border: 4px solid #c4c4c4;
+    border-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#webcam-status {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #999;
+    font-size: 16px;
+}
+
+video:not([src=""]) + #webcam-status,
+video[srcObject] + #webcam-status {
+    display: none;
+}
+
+/* === Side Panel === */
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    min-width: 260px;
+}
+
+/* === Word Buffer === */
+.word-buffer {
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    flex: 1;
+}
+
+.buffer-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.buffer-letters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 40px;
+}
+
+.buffer-letters .letter-slot {
+    width: 36px;
+    height: 4px;
+    background-color: #d0d0d0;
+    border-radius: 2px;
+}
+
+.buffer-letters .letter-filled {
+    width: 36px;
+    height: 40px;
+    background-color: #e8e8e8;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* === Letter Prediction === */
+.letter-prediction {
+    background-color: #e8e8e8;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.prediction-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.predicted-letter {
+    font-family: 'Space Mono', monospace;
+    font-size: 64px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1;
+}
+
+/* === Buttons === */
+.button-row {
+    display: flex;
+    gap: 16px;
+}
+
+.btn {
+    flex: 1;
+    padding: 18px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.1s ease, opacity 0.15s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-sign {
+    background-color: #7ec8e3;
+    color: #1a1a1a;
+}
+
+.btn-clear {
+    background-color: #f5c17b;
+    color: #1a1a1a;
+}
+
+.btn-complete {
+    background-color: #8bc34a;
+    color: #1a1a1a;
+}
+
+/* === Complete Screen === */
+#complete-screen {
+    min-height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#complete-screen.active {
+    display: flex;
+}
+
+.complete-content {
+    text-align: center;
+}
+
+.complete-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+}
+
+.complete-word {
+    font-family: 'Space Mono', monospace;
+    font-size: 80px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+    letter-spacing: 8px;
+}
+
+.btn-back {
+    background-color: #e0e0e0;
+    color: #1a1a1a;
+    padding: 14px 48px;
+    display: inline-block;
+    flex: none;
+}

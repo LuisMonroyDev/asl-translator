@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Fingerspelling Translator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main Screen -->
+    <div id="main-screen" class="screen active">
+        <h1>American Sign Language Translator</h1>
+        <p id="backend-status" class="backend-status">Backend: checking...</p>
+
+        <div class="content-area">
+            <!-- Webcam Feed -->
+            <div class="webcam-container">
+                <video id="webcam" autoplay playsinline></video>
+                <p id="webcam-status">Loading camera...</p>
+            </div>
+
+            <!-- Right Panel: Word Buffer + Letter Prediction -->
+            <div class="side-panel">
+                <div class="word-buffer" id="word-buffer">
+                    <p class="buffer-label">Word Buffer</p>
+                    <div class="buffer-letters" id="buffer-letters">
+                        <!-- Letters appear here as spans -->
+                    </div>
+                </div>
+
+                <div class="letter-prediction">
+                    <p class="prediction-label">Predicted Letter</p>
+                    <p class="predicted-letter" id="predicted-letter">&mdash;</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-row">
+            <button class="btn btn-sign" id="btn-sign">SIGN</button>
+            <button class="btn btn-clear" id="btn-clear">CLEAR</button>
+            <button class="btn btn-complete" id="btn-complete">COMPLETE</button>
+        </div>
+    </div>
+
+    <!-- Complete Screen -->
+    <div id="complete-screen" class="screen">
+        <div class="complete-content">
+            <p class="complete-label">Your Word</p>
+            <h2 class="complete-word" id="complete-word"></h2>
+            <button class="btn btn-back" id="btn-back">BACK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
