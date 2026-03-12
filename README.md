@@ -198,6 +198,38 @@ git checkout main
 git pull
 git checkout -b feature/luis-next-feature
 
+## The Pipeline: How Your App Learns Sign Language
+Step 1: collect_data.py — "Looking at flashcards"
+Imagine you show a robot a bunch of photos of hands making the letter A, B, or C.
+
+For each photo, the robot (MediaPipe) doesn't see the picture the way we do. Instead, it finds 21 dots on the hand — fingertips, knuckles, wrist — and writes down where each dot is (x, y, z position). That's 63 numbers per photo.
+
+It saves all those numbers in a spreadsheet (landmarks.csv) with a label: "these 63 numbers = letter A", "these 63 numbers = letter B", etc.
+
+The confidence threshold we just changed? That's how picky the robot is about saying "yes, I see a hand." At 0.5, it was saying "I'm not sure that's a hand" for a lot of C images — because the C shape curls the fingers together and looks weird to the robot. At 0.3, we told it "don't be so picky, if you kinda see a hand, go ahead and mark the dots."
+
+Step 2: train_model.py — "Studying for the test"
+Now we give that spreadsheet to a Random Forest — think of it as a classroom of 100 tiny decision-makers (trees).
+
+Each tree looks at the 63 numbers and learns simple rules like:
+
+"If the thumb dot is far from the index finger dot, it's probably B"
+"If all finger dots are bunched together, it's probably A"
+"If the fingers curve inward, it's probably C"
+When a new hand comes in, all 100 trees vote on what letter it is. Majority wins.
+
+What We Learned About Less Data
+With 70 C images skipped, the model had:
+
+A: ~85 examples
+B: ~230 examples
+C: only ~116 examples
+The model saw way more B's during training, so it got really good at B but not as good at C. It's like studying 230 B flashcards but only 116 C flashcards — you'd be great at B but shaky on C.
+
+By lowering the confidence, we rescued more C samples, giving the model more "flashcards" to study from, which makes its C predictions more accurate.
+
+The tradeoff: some of those rescued images might have slightly less accurate dot placements (the robot was less sure), which could add a little noise — but more data almost always beats slightly cleaner data.
+
 ## 📊 Project Phases
 
 ### Phase 1: Proof of Concept (Feb 16 - March 2)

@@ -19,6 +19,7 @@
             <!-- Webcam Feed -->
             <div class="webcam-container">
                 <video id="webcam" autoplay playsinline></video>
+                <canvas id="landmark-canvas" width="640" height="480"></canvas>
                 <p id="webcam-status">Loading camera...</p>
             </div>
 
@@ -34,6 +35,7 @@
                 <div class="letter-prediction">
                     <p class="prediction-label">Predicted Letter</p>
                     <p class="predicted-letter" id="predicted-letter">&mdash;</p>
+                    <p class="confidence" id="confidence">&nbsp;</p>
                 </div>
             </div>
         </div>
@@ -55,6 +57,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm/vision_bundle.mjs" type="module"></script>
+    <script src="script.js" type="module"></script>
 </body>
 </html>
